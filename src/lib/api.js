@@ -1,22 +1,22 @@
-const BASE_URL = 'http://localhost:2300';
+const BASE_URL = process.env.VUE_APP_API_URL;
 
-async function basicHandle(res) {
+function basicHandle(res) {
   if (!res.ok) {
     throw new Error(res.status);
   }
 
-  const data = await res.json();
-  return data;
+  return res.json();
 }
 
 const headers = {
   Accept: 'application/json',
-  'Content-Type': 'application/json'
+  'Content-Type': 'application/json',
+  Authorization: `Bearer ${sessionStorage.getItem('token')}`
 };
 
 const API = {
   async get(endpoint) {
-    const res = await fetch(BASE_URL + endpoint);
+    const res = await fetch(BASE_URL + endpoint, { headers });
 
     basicHandle(res);
   },

@@ -16,8 +16,7 @@
 </template>
 
 <script>
-import api from '../lib/api';
-
+import { mapActions } from 'vuex';
 export default {
   data() {
     return {
@@ -25,9 +24,10 @@ export default {
       password: ''
     };
   },
+  ...mapActions(['register']),
   methods: {
     register() {
-      api.post('/register', {
+      this.$store.dispatch('register', {
         email: this.email,
         password: this.password
       });

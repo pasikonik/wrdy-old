@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="submit">
+  <form @submit.prevent="login">
     <label for="email">
       Email
       <input type="text" name="email" v-model="email" />
@@ -14,6 +14,8 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
+
 export default {
   name: 'Login',
   data() {
@@ -22,9 +24,28 @@ export default {
       password: ''
     };
   },
+  computed: {
+    credentials() {
+      return {
+        email: this.email,
+        password: this.password
+      };
+    }
+  },
   methods: {
-    submit() {
-      console.log('cos');
+    ...mapActions(['retrieveToken']),
+    async login() {
+      try {
+        await this.$store.dispatch('retrieveToken', this.credentials);
+        this.$router.push('dashboard');
+      } catch (error) {
+        this.$notify({
+          group: 'main',
+          type: 'error',
+          title: 'Fail',
+          text: error
+        });
+      }
     }
   }
 };
@@ -33,5 +54,6 @@ export default {
 <style scoped>
 form {
   width: 200px;
+  margin: auto;
 }
 </style>
