@@ -4,7 +4,6 @@
       Email
       <input type="text" name="email" v-model="email" />
     </label>
-
     <label for="password">
       Password
       <input type="password" name="password" v-model="password" />
@@ -14,7 +13,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapActions } from 'vuex'
 
 export default {
   name: 'Login',
@@ -22,33 +21,33 @@ export default {
     return {
       email: '',
       password: ''
-    };
+    }
   },
   computed: {
     credentials() {
       return {
         email: this.email,
         password: this.password
-      };
+      }
     }
   },
   methods: {
     ...mapActions(['retrieveToken']),
-    async login() {
-      try {
-        await this.$store.dispatch('retrieveToken', this.credentials);
-        this.$router.push('dashboard');
-      } catch (error) {
-        this.$notify({
-          group: 'main',
-          type: 'error',
-          title: 'Fail',
-          text: error
-        });
-      }
+    login() {
+      this.$store
+        .dispatch('retrieveToken', this.credentials)
+        .then(() => this.$router.push('dashboard'))
+        .catch(error => {
+          this.$notify({
+            group: 'main',
+            type: 'error',
+            title: 'Fail',
+            text: error
+          })
+        })
     }
   }
-};
+}
 </script>
 
 <style scoped>

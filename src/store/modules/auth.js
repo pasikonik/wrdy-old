@@ -1,4 +1,4 @@
-import api from '../../lib/api';
+import api from '../../lib/api'
 
 const AuthModule = {
   state: {
@@ -9,10 +9,10 @@ const AuthModule = {
   },
   mutations: {
     retrieveToken(state, token) {
-      state.token = token;
+      state.token = token
     },
     destroyToken(state) {
-      state.token = null;
+      state.token = null
     }
   },
   actions: {
@@ -21,22 +21,22 @@ const AuthModule = {
         api
           .post('/login', credentials)
           .then(({ data: { access_token } }) => {
-            sessionStorage.setItem('token', access_token);
-            context.commit('retrieveToken', access_token);
-            resolve(access_token);
+            sessionStorage.setItem('token', access_token)
+            context.commit('retrieveToken', access_token)
+            resolve(access_token)
           })
           .catch(error => {
-            reject(error);
-          });
-      });
+            reject(error)
+          })
+      })
     },
     destroyToken(context) {
       if (context.getters.isAuthenticated) {
-        sessionStorage.removeItem('token');
-        context.commit('destroyToken');
+        sessionStorage.removeItem('token')
+        context.commit('destroyToken')
       }
     }
   }
-};
+}
 
-export default AuthModule;
+export default AuthModule

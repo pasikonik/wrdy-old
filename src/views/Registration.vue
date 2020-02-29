@@ -16,13 +16,13 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapActions } from 'vuex'
 export default {
   data() {
     return {
       email: '',
       password: ''
-    };
+    }
   },
   ...mapActions(['register']),
   methods: {
@@ -30,10 +30,10 @@ export default {
       this.$store.dispatch('register', {
         email: this.email,
         password: this.password
-      });
+      })
     }
   }
-};
+}
 </script>
 
 <style></style>

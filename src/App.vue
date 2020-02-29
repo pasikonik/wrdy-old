@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex';
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
   computed: {
@@ -32,10 +32,10 @@ export default {
   methods: {
     ...mapActions(['destroyToken']),
     logout() {
-      this.$store.dispatch('destroyToken');
+      this.$store.dispatch('destroyToken')
     }
   }
-};
+}
 </script>
 
 <style lang="scss">

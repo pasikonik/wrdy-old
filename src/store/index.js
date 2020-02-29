@@ -1,10 +1,10 @@
-import Vue from 'vue';
-import Vuex from 'vuex';
+import Vue from 'vue'
+import Vuex from 'vuex'
 
-import UserModule from './modules/user';
-import AuthModule from './modules/auth';
+import UserModule from './modules/user'
+import AuthModule from './modules/auth'
 
-Vue.use(Vuex);
+Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {},
@@ -14,4 +14,4 @@ export default new Vuex.Store({
     auth: AuthModule,
     um: UserModule
   }
-});
+})
