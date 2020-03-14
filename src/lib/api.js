@@ -8,17 +8,17 @@ function basicHandle(res) {
   return res.json()
 }
 
-const headers = {
+const headers = new Headers({
   Accept: 'application/json',
   'Content-Type': 'application/json',
   Authorization: `Bearer ${sessionStorage.getItem('token')}`
-}
+})
 
 const API = {
   async get(endpoint) {
     const res = await fetch(BASE_URL + endpoint, { headers })
 
-    basicHandle(res)
+    return await basicHandle(res)
   },
   async post(endpoint, body) {
     const res = await fetch(BASE_URL + endpoint, {
@@ -27,7 +27,7 @@ const API = {
       body: JSON.stringify(body)
     })
 
-    basicHandle(res)
+    return await basicHandle(res)
   }
 }
 

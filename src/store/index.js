@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-import UserModule from './modules/user'
-import AuthModule from './modules/auth'
+import user from './modules/user'
+import auth from './modules/auth'
 
 Vue.use(Vuex)
 
@@ -11,7 +11,7 @@ export default new Vuex.Store({
   mutations: {},
   actions: {},
   modules: {
-    auth: AuthModule,
-    um: UserModule
+    auth,
+    um: user
   }
 })

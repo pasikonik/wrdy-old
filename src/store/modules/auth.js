@@ -1,18 +1,21 @@
-import api from '../../lib/api'
+import api from '@/lib/api'
 
 const AuthModule = {
   state: {
     token: sessionStorage.getItem('token') || null
   },
   getters: {
-    isAuthenticated: state => !!state.token
+    loggedIn: state => !!state.token,
+    token: state => state.token
   },
   mutations: {
-    retrieveToken(state, token) {
+    SET_TOKEN(state, token) {
       state.token = token
+      sessionStorage.setItem('token', token)
     },
-    destroyToken(state) {
-      state.token = null
+    DESTROY_TOKEN() {
+      sessionStorage.removeItem('token')
+      location.reload()
     }
   },
   actions: {
@@ -20,10 +23,9 @@ const AuthModule = {
       return new Promise((resolve, reject) => {
         api
           .post('/login', credentials)
-          .then(({ data: { access_token } }) => {
-            sessionStorage.setItem('token', access_token)
-            context.commit('retrieveToken', access_token)
-            resolve(access_token)
+          .then(({ auth_token }) => {
+            context.commit('SET_TOKEN', auth_token)
+            resolve(auth_token)
           })
           .catch(error => {
             reject(error)
@@ -31,9 +33,8 @@ const AuthModule = {
       })
     },
     destroyToken(context) {
-      if (context.getters.isAuthenticated) {
-        sessionStorage.removeItem('token')
-        context.commit('destroyToken')
+      if (context.getters.loggedIn) {
+        context.commit('DESTROY_TOKEN')
       }
     }
   }

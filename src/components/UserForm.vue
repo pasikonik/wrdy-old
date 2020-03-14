@@ -1,7 +1,7 @@
 <template>
   <v-card width="300" class="mx-auto mt-5">
     <v-card-title class="text-center">
-      <h1 class="display-1">Sign Up</h1>
+      <h1 class="display-1">Login</h1>
     </v-card-title>
     <v-card-text>
       <v-form>
@@ -22,13 +22,12 @@
       </v-form>
     </v-card-text>
     <v-card-actions>
-      <v-btn color="success" @click="register">Sign Up</v-btn>
+      <v-btn color="success" @click="login">Login</v-btn>
     </v-card-actions>
   </v-card>
 </template>
 
 <script>
-import { mapActions } from 'vuex'
 export default {
   data() {
     return {
@@ -36,21 +35,6 @@ export default {
       password: '',
       showPassword: false
     }
-  },
-  ...mapActions(['register']),
-  methods: {
-    register() {
-      this.$store
-        .dispatch('register', {
-          email: this.email,
-          password: this.password
-        })
-        .then(() => {
-          this.$router.push('/')
-        })
-    }
   }
 }
 </script>
-
-<style></style>
