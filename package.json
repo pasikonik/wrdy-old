@@ -1,6 +1,6 @@
 {
-  "name": "wordy",
-  "version": "0.1.0",
+  "name": "wrdy",
+  "version": "0.2.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "core-js": "^3.6.4",
+    "jwt-decode": "^2.2.0",
     "vue": "^2.6.11",
     "vue-notification": "^1.3.16",
     "vue-router": "^3.1.5",

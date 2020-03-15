@@ -16,5 +16,8 @@ new Vue({
   router,
   store,
   vuetify,
+  created() {
+    store.dispatch('fetchCurrentUser')
+  },
   render: h => h(App)
 }).$mount('#app')

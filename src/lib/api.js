@@ -1,5 +1,13 @@
 const BASE_URL = process.env.VUE_APP_API_URL
 
+const getToken = () => sessionStorage.getItem('token')
+
+const headers = new Headers({
+  Accept: 'application/json',
+  'Content-Type': 'application/json',
+  Authorization: `Bearer ${getToken()}`
+})
+
 function basicHandle(res) {
   if (!res.ok) {
     throw new Error(res.status)
@@ -8,15 +16,12 @@ function basicHandle(res) {
   return res.json()
 }
 
-const headers = new Headers({
-  Accept: 'application/json',
-  'Content-Type': 'application/json',
-  Authorization: `Bearer ${sessionStorage.getItem('token')}`
-})
-
-const API = {
+const api = {
   async get(endpoint) {
-    const res = await fetch(BASE_URL + endpoint, { headers })
+    const res = await fetch(BASE_URL + endpoint, {
+      headers,
+      method: 'get'
+    })
 
     return await basicHandle(res)
   },
@@ -31,4 +36,4 @@ const API = {
   }
 }
 
-export default API
+export default api

@@ -2,8 +2,8 @@
   <v-app>
     <v-app-bar app>
       <v-toolbar-title class="headline mr-5">
-        <v-icon black>
-          mdi-view-dashboard-outline
+        <v-icon large>
+          mdi-alpha-w-circle-outline
         </v-icon>
         Wrdy
       </v-toolbar-title>
@@ -17,6 +17,7 @@
       <v-spacer></v-spacer>
 
       <v-btn v-if="loggedIn" @click="logout" text>
+        [{{ currentUser }}]
         <v-icon>mdi-logout-variant</v-icon>
       </v-btn>
 
@@ -43,7 +44,6 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
 import { authComputed } from '@/store/helpers'
 
 export default {

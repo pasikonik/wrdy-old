@@ -1,12 +1,16 @@
+const jwtDecode = require('jwt-decode')
+
 import api from '@/lib/api'
 
 const AuthModule = {
   state: {
-    token: sessionStorage.getItem('token') || null
+    token: sessionStorage.getItem('token') || null,
+    currentUser: {}
   },
   getters: {
     loggedIn: state => !!state.token,
-    token: state => state.token
+    token: state => state.token,
+    currentUser: state => state.currentUser
   },
   mutations: {
     SET_TOKEN(state, token) {
@@ -16,15 +20,18 @@ const AuthModule = {
     DESTROY_TOKEN() {
       sessionStorage.removeItem('token')
       location.reload()
+    },
+    SET_CURRENT_USER(state, user) {
+      state.currentUser = user
     }
   },
   actions: {
-    retrieveToken(context, credentials) {
+    retrieveToken({ commit }, credentials) {
       return new Promise((resolve, reject) => {
         api
           .post('/login', credentials)
           .then(({ auth_token }) => {
-            context.commit('SET_TOKEN', auth_token)
+            commit('SET_TOKEN', auth_token)
             resolve(auth_token)
           })
           .catch(error => {
@@ -32,10 +39,20 @@ const AuthModule = {
           })
       })
     },
-    destroyToken(context) {
-      if (context.getters.loggedIn) {
-        context.commit('DESTROY_TOKEN')
-      }
+    destroyToken({ commit }) {
+      return new Promise(resolve => {
+        commit('DESTROY_TOKEN')
+        resolve()
+      })
+    },
+    fetchCurrentUser({ commit, state: { token } }) {
+      if (!token) return
+
+      const { user_id } = jwtDecode(token)
+      api.get(`/users/${user_id}`).then(user => {
+        debugger
+        commit('SET_CURRENT_USER', user)
+      })
     }
   }
 }
