@@ -1,4 +1,4 @@
-# wordy
+# wrdy
 
 ## Project setup
 ```
