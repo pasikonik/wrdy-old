@@ -5,7 +5,7 @@ const getToken = () => sessionStorage.getItem('token')
 const headers = new Headers({
   Accept: 'application/json',
   'Content-Type': 'application/json',
-  Authorization: `Bearer ${getToken()}`
+  Authorization: `Bearer ${getToken()}`,
 })
 
 function basicHandle(res) {
@@ -20,7 +20,7 @@ const api = {
   async get(endpoint) {
     const res = await fetch(BASE_URL + endpoint, {
       headers,
-      method: 'get'
+      method: 'get',
     })
 
     return await basicHandle(res)
@@ -29,11 +29,11 @@ const api = {
     const res = await fetch(BASE_URL + endpoint, {
       headers,
       method: 'post',
-      body: JSON.stringify(body)
+      body: JSON.stringify(body),
     })
 
     return await basicHandle(res)
-  }
+  },
 }
 
 export default api

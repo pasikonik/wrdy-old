@@ -1,7 +1,7 @@
 module.exports = {
   root: true,
   env: {
-    node: true
+    node: true,
   },
   extends: ['plugin:vue/essential', '@vue/prettier'],
   rules: {
@@ -11,19 +11,19 @@ module.exports = {
       'warn',
       {
         singleQuote: true,
-        semi: false
-      }
-    ]
+        semi: false,
+      },
+    ],
   },
   parserOptions: {
-    parser: 'babel-eslint'
+    parser: 'babel-eslint',
   },
   overrides: [
     {
       files: ['**/__tests__/*.{j,t}s?(x)'],
       env: {
-        jest: true
-      }
-    }
-  ]
+        jest: true,
+      },
+    },
+  ],
 }

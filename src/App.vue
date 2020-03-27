@@ -54,33 +54,33 @@ export default {
         {
           icon: 'mdi-home',
           text: 'Home',
-          path: '/'
+          path: '/',
         },
         {
           icon: 'mdi-format-list-bulleted-square',
           text: 'Lists',
-          path: '/lists'
+          path: '/lists',
         },
         {
           icon: 'mdi-chart-bar',
           text: 'stats',
-          path: '/stats'
+          path: '/stats',
         },
         {
           icon: 'mdi-file-download-outline',
           text: 'import',
-          path: '/import'
-        }
-      ]
+          path: '/import',
+        },
+      ],
     }
   },
   computed: {
-    ...authComputed
+    ...authComputed,
   },
   methods: {
     logout() {
       this.$store.dispatch('destroyToken')
-    }
-  }
+    },
+  },
 }
 </script>

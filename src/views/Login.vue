@@ -36,31 +36,31 @@ export default {
     return {
       email: '',
       password: '',
-      showPassword: false
+      showPassword: false,
     }
   },
   computed: {
     credentials() {
       return {
         email: this.email,
-        password: this.password
+        password: this.password,
       }
-    }
+    },
   },
   methods: {
     login() {
       this.$store
         .dispatch('retrieveToken', this.credentials)
         .then(() => this.$router.push('/'))
-        .catch(error => {
+        .catch((error) => {
           this.$notify({
             group: 'main',
             type: 'error',
             title: 'Fail',
-            text: error
+            text: error,
           })
         })
-    }
-  }
+    },
+  },
 }
 </script>

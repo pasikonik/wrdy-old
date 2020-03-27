@@ -5,12 +5,12 @@ import api from '@/lib/api'
 const AuthModule = {
   state: {
     token: sessionStorage.getItem('token') || null,
-    currentUser: {}
+    currentUser: {},
   },
   getters: {
-    loggedIn: state => !!state.token,
-    token: state => state.token,
-    currentUser: state => state.currentUser
+    loggedIn: (state) => !!state.token,
+    token: (state) => state.token,
+    currentUser: (state) => state.currentUser,
   },
   mutations: {
     SET_TOKEN(state, token) {
@@ -23,7 +23,7 @@ const AuthModule = {
     },
     SET_CURRENT_USER(state, user) {
       state.currentUser = user
-    }
+    },
   },
   actions: {
     retrieveToken({ commit }, credentials) {
@@ -34,13 +34,13 @@ const AuthModule = {
             commit('SET_TOKEN', auth_token)
             resolve(auth_token)
           })
-          .catch(error => {
+          .catch((error) => {
             reject(error)
           })
       })
     },
     destroyToken({ commit }) {
-      return new Promise(resolve => {
+      return new Promise((resolve) => {
         commit('DESTROY_TOKEN')
         resolve()
       })
@@ -49,12 +49,12 @@ const AuthModule = {
       if (!token) return
 
       const { user_id } = jwtDecode(token)
-      api.get(`/users/${user_id}`).then(user => {
+      api.get(`/users/${user_id}`).then((user) => {
         debugger
         commit('SET_CURRENT_USER', user)
       })
-    }
-  }
+    },
+  },
 }
 
 export default AuthModule

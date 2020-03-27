@@ -33,8 +33,8 @@ export default {
     return {
       email: '',
       password: '',
-      showPassword: false
+      showPassword: false,
     }
-  }
+  },
 }
 </script>

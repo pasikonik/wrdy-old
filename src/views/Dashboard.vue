@@ -8,8 +8,8 @@
 export default {
   data() {
     return {
-      cos: 'tam'
+      cos: 'tam',
     }
-  }
+  },
 }
 </script>

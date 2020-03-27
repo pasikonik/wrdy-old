@@ -9,8 +9,8 @@ const UserModule = {
       } catch (error) {
         console.error(error)
       }
-    }
-  }
+    },
+  },
 }
 
 export default UserModule

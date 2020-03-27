@@ -34,7 +34,7 @@ export default {
     return {
       email: '',
       password: '',
-      showPassword: false
+      showPassword: false,
     }
   },
   ...mapActions(['register']),
@@ -43,13 +43,13 @@ export default {
       this.$store
         .dispatch('register', {
           email: this.email,
-          password: this.password
+          password: this.password,
         })
         .then(() => {
           this.$router.push('/')
         })
-    }
-  }
+    },
+  },
 }
 </script>
 
