@@ -2,10 +2,10 @@ import api from '../../lib/api'
 
 const UserModule = {
   actions: {
-    async register(context, params) {
+    async register({ commit }, params) {
       try {
-        await api.post('/register', params)
-        context.dispatch('retrieveToken', params)
+        const user = await api.post('/users', params)
+        commit('SET_CURRENT_USER', user)
       } catch (error) {
         console.error(error)
       }

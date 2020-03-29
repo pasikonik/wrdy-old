@@ -3,8 +3,8 @@ const BASE_URL = process.env.VUE_APP_API_URL
 const getToken = () => sessionStorage.getItem('token')
 
 const headers = new Headers({
-  Accept: 'application/json',
-  'Content-Type': 'application/json',
+  Accept: 'application/vnd.api+json',
+  'Content-Type': 'application/vnd.api+json',
   Authorization: `Bearer ${getToken()}`,
 })
 

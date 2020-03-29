@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "core-js": "^3.6.4",
+    "jsonapi-serializer": "^3.6.6",
     "jwt-decode": "^2.2.0",
     "vue": "^2.6.11",
     "vue-notification": "^1.3.16",
