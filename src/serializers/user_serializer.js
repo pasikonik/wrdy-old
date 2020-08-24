@@ -1,6 +1,6 @@
-import { Serializer } from 'jsonapi-serializer'
+const JSONAPISerializer = require('jsonapi-serializer').Serializer
 
-const UserSerializer = new Serializer('users', {
+const UserSerializer = new JSONAPISerializer('users', {
   attributes: ['email'],
 })
 

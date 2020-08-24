@@ -1,9 +1,5 @@
 const jwtDecode = require('jwt-decode')
 
-import UserSerializer from '@/serializers/user_serializer'
-
-import api from '@/lib/api'
-
 const AuthModule = {
   state: {
     token: sessionStorage.getItem('token') || null,
@@ -24,7 +20,7 @@ const AuthModule = {
       location.reload()
     },
     SET_CURRENT_USER(state, user) {
-      state.currentUser = UserSerializer.serialize(user)
+      state.currentUser = user
     },
   },
   actions: {
@@ -47,11 +43,11 @@ const AuthModule = {
         resolve()
       })
     },
-    fetchCurrentUser({ commit, state: { token } }) {
+    fetchCurrentUser({ commit, dispatch, state: { token } }) {
       if (!token) return
 
       const { user_id } = jwtDecode(token)
-      api.get(`/users/${user_id}`).then((user) => {
+      dispatch('jv/get', `users/${user_id}`).then((user) => {
         commit('SET_CURRENT_USER', user)
       })
     },
