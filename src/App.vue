@@ -2,9 +2,7 @@
   <v-app>
     <v-app-bar app>
       <v-toolbar-title class="headline mr-5">
-        <v-icon large>
-          mdi-alpha-w-circle-outline
-        </v-icon>
+        <v-icon large> mdi-alpha-w-circle-outline </v-icon>
         Wrdy
       </v-toolbar-title>
       <v-toolbar-items v-if="loggedIn">
@@ -22,18 +20,14 @@
       </v-btn>
 
       <v-toolbar-items v-if="!loggedIn">
-        <v-btn to="/login" text>
-          Login
-        </v-btn>
-        <v-btn to="/registration" text>
-          Sign Up
-        </v-btn>
+        <v-btn to="/login" text> Login </v-btn>
+        <v-btn to="/registration" text> Sign Up </v-btn>
       </v-toolbar-items>
     </v-app-bar>
 
-    <v-content>
+    <v-main>
       <router-view></router-view>
-    </v-content>
+    </v-main>
 
     <v-footer absolute class="font-weight-medium">
       <v-col class="text-center" cols="12">
