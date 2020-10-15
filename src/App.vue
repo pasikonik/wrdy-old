@@ -15,7 +15,7 @@
       <v-spacer></v-spacer>
 
       <v-btn v-if="loggedIn" @click="logout" text>
-        [{{ currentUser }}]
+        [{{ currentUser.email }}]
         <v-icon>mdi-logout-variant</v-icon>
       </v-btn>
 

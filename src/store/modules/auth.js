@@ -1,4 +1,8 @@
-const jwtDecode = require('jwt-decode')
+import jwtDecode from 'jwt-decode'
+import JsonApiResponseConverter from 'json-api-response-converter'
+
+import api from '@/lib/api'
+// import User from '@/models/User'
 
 const AuthModule = {
   state: {
@@ -20,7 +24,7 @@ const AuthModule = {
       location.reload()
     },
     SET_CURRENT_USER(state, user) {
-      state.currentUser = user
+      state.currentUser = new JsonApiResponseConverter(user).formattedResponse
     },
   },
   actions: {
@@ -43,11 +47,12 @@ const AuthModule = {
         resolve()
       })
     },
-    fetchCurrentUser({ commit, dispatch, state: { token } }) {
+    fetchCurrentUser({ commit, state: { token } }) {
       if (!token) return
 
       const { user_id } = jwtDecode(token)
-      dispatch('jv/get', `users/${user_id}`).then((user) => {
+      // User.find(user_id)
+      api.get(`users/${user_id}`).then((user) => {
         commit('SET_CURRENT_USER', user)
       })
     },
