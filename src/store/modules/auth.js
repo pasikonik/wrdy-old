@@ -2,7 +2,7 @@ import jwtDecode from 'jwt-decode'
 import JsonApiResponseConverter from 'json-api-response-converter'
 
 import api from '@/lib/api'
-// import User from '@/models/User'
+import User from '@/models/User'
 
 const AuthModule = {
   state: {
@@ -24,14 +24,16 @@ const AuthModule = {
       location.reload()
     },
     SET_CURRENT_USER(state, user) {
-      state.currentUser = new JsonApiResponseConverter(user).formattedResponse
+      const currentUser = new JsonApiResponseConverter(user).formattedResponse
+      User.insert({ data: currentUser })
+      state.currentUser = currentUser
     },
   },
   actions: {
     retrieveToken({ commit }, credentials) {
       return new Promise((resolve, reject) => {
         api
-          .post('/login', credentials)
+          .post('login', credentials)
           .then(({ auth_token }) => {
             commit('SET_TOKEN', auth_token)
             resolve(auth_token)
@@ -51,7 +53,6 @@ const AuthModule = {
       if (!token) return
 
       const { user_id } = jwtDecode(token)
-      // User.find(user_id)
       api.get(`users/${user_id}`).then((user) => {
         commit('SET_CURRENT_USER', user)
       })

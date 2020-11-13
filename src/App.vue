@@ -34,6 +34,8 @@
         <strong>Wrdy</strong> — {{ new Date().getFullYear() }}
       </v-col>
     </v-footer>
+
+    <notifications group="main" />
   </v-app>
 </template>
 
