@@ -1,15 +1,45 @@
 <template>
-  <v-card class="mx-auto" max-width="300" tile>
-    <v-list dense>
-      <v-subheader>Lists</v-subheader>
-      <v-list-item-group v-model="item" color="primary">
-        <v-list-item v-for="(item, i) in items" :key="i">
+  <v-card height="400" width="256">
+    <v-navigation-drawer permanent>
+      <v-list-item>
+        <v-list-item-content>
+          <v-list-item-title class="title"> My lists </v-list-item-title>
+          <v-list-item-subtitle> amount: 0 </v-list-item-subtitle>
+          <v-list-item-subtitle> words: 0 </v-list-item-subtitle>
+        </v-list-item-content>
+      </v-list-item>
+
+      <v-divider></v-divider>
+
+      <v-list dense nav>
+        <v-list-item v-for="item in items" :key="item.title" link>
           <v-list-item-content>
-            <v-list-item-title v-text="item.text"></v-list-item-title>
+            <v-list-item-title>{{ item.title }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-      </v-list-item-group>
-    </v-list>
+
+        <v-list-item>
+          <div class="d-inline-flex">
+            <v-text-field
+              label="Solo"
+              placeholder="New list name"
+              v-model="newListName"
+              solo
+            ></v-text-field>
+            <v-btn
+              @click="addList"
+              color="primary"
+              elevation="3"
+              class="newListButton"
+              large
+            >
+              <v-icon large> mdi-plus-box-outline </v-icon>
+            </v-btn>
+          </div>
+        </v-list-item>
+        <v-list-item> nowości... </v-list-item>
+      </v-list>
+    </v-navigation-drawer>
   </v-card>
 </template>
 
@@ -17,13 +47,20 @@
 export default {
   data: () => ({
     item: 1,
-    items: [
-      { text: 'Real-Time', icon: 'mdi-clock' },
-      { text: 'Audience', icon: 'mdi-account' },
-      { text: 'Conversions', icon: 'mdi-flag' },
-    ],
+    newListName: '',
+    items: [{ title: 'Main' }, { title: 'Favorites' }, { title: 'Known' }],
   }),
+  methods: {
+    addList() {
+      this.$store.dispatch('addList', { name: this.newListName })
+    },
+  },
 }
 </script>
 
-<style scoped></style>
+<style lang="scss" scoped>
+.newListButton {
+  margin-top: 2px;
+}
+</style>    list,
+
