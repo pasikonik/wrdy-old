@@ -58,14 +58,14 @@ export default {
           path: '/lists',
         },
         {
-          icon: 'mdi-chart-bar',
-          text: 'stats',
-          path: '/stats',
-        },
-        {
           icon: 'mdi-file-download-outline',
           text: 'import',
           path: '/import',
+        },
+        {
+          icon: 'mdi-chart-bar',
+          text: 'stats',
+          path: '/stats',
         },
       ],
     }

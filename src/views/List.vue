@@ -1,7 +1,7 @@
 <template>
   <div>
     <ListsNavigation />
-    <div>WIKSA</div>
+    <div>YALLA {{ id }}</div>
   </div>
 </template>
 
@@ -10,7 +10,18 @@ import List from '@/models/List'
 import ListsNavigation from '@/components/ListsNavigation'
 
 export default {
-  name: 'Links',
+  name: 'Link',
+  props: {
+    id: { type: String, required: true },
+  },
+  data() {
+    return {
+      list: null,
+    }
+  },
+  created() {
+    List.find(list_id)
+  },
   components: { ListsNavigation },
 }
 </script>

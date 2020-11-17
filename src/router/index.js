@@ -38,6 +38,13 @@ const routes = [
     component: () => import('../views/Lists.vue'),
   },
   {
+    path: '/lists/:id',
+    name: 'list',
+    props: true,
+    beforeEnter: ifAuthenticated,
+    component: () => import('../views/List.vue'),
+  },
+  {
     path: '/stats',
     name: 'stats',
     beforeEnter: ifAuthenticated,

@@ -6,6 +6,7 @@
 
 <script>
 export default {
+  name: 'Stats',
   data() {
     return {
       cos: 'tam',
