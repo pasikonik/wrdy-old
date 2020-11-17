@@ -62,5 +62,4 @@ export default {
 .newListButton {
   margin-top: 2px;
 }
-</style>    list,
-
+</style>
