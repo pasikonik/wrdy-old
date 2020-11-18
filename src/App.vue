@@ -12,7 +12,7 @@
         </v-btn>
       </v-toolbar-items>
 
-      <v-spacer></v-spacer>
+      <v-spacer />
 
       <v-btn v-if="loggedIn" @click="logout" text>
         {{ currentUser.email }}
@@ -26,7 +26,7 @@
     </v-app-bar>
 
     <v-main>
-      <router-view></router-view>
+      <router-view :key="$route.path" />
     </v-main>
 
     <v-footer absolute class="font-weight-medium">
