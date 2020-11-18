@@ -1,14 +1,16 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
-import Login from '../views/Login.vue'
-import Registration from '../views/Registration.vue'
+import Home from '@/views/Home.vue'
+import Login from '@/views/Login.vue'
+import Registration from '@/views/Registration.vue'
+import Lists from '@/views/Lists.vue'
+import List from '@/views/List.vue'
 
-import store from '../store'
+import store from '@/store'
 
 Vue.use(VueRouter)
 
-const ifNotAuthenticated = (to, from, next) => {
+const ifNotAuthenticated = (_to, _from, next) => {
   if (!store.getters.loggedIn) {
     next()
     return
@@ -16,7 +18,7 @@ const ifNotAuthenticated = (to, from, next) => {
   next('/')
 }
 
-const ifAuthenticated = (to, from, next) => {
+const ifAuthenticated = (_to, _from, next) => {
   if (store.getters.loggedIn) {
     next()
     return
@@ -35,20 +37,20 @@ const routes = [
     path: '/lists',
     name: 'lists',
     beforeEnter: ifAuthenticated,
-    component: () => import('../views/Lists.vue'),
+    component: Lists,
   },
   {
     path: '/lists/:id',
     name: 'list',
     props: true,
     beforeEnter: ifAuthenticated,
-    component: () => import('../views/List.vue'),
+    component: List,
   },
   {
     path: '/stats',
     name: 'stats',
     beforeEnter: ifAuthenticated,
-    component: () => import('../views/Stats.vue'),
+    component: () => import('@/views/Stats.vue'),
   },
   {
     path: '/login',
@@ -60,12 +62,6 @@ const routes = [
     path: '/registration',
     name: 'registration',
     component: Registration,
-  },
-  {
-    path: '/dashboard',
-    name: 'dashboard',
-    beforeEnter: ifAuthenticated,
-    component: () => import('../views/Dashboard.vue'),
   },
 ]
 

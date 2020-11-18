@@ -1,13 +1,14 @@
 <template>
-  <div>
-    <ListsNavigation />
-    <div>WIKSA</div>
-  </div>
+  <ListsNavigation>
+    <div class="content">
+      <div>Jump</div>
+    </div>
+  </ListsNavigation>
 </template>
 
 <script>
 import List from '@/models/List'
-import ListsNavigation from '@/components/ListsNavigation'
+import ListsNavigation from '@/layouts/ListsNavigation'
 
 export default {
   name: 'Links',
@@ -17,6 +18,6 @@ export default {
 
 <style lang="scss" scoped>
 .content {
-  border: 1px solid green;
+  padding: 15px;
 }
 </style>

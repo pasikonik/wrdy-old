@@ -8,6 +8,7 @@ import Word from '@/models/Word'
 
 import user from './modules/user'
 import list from './modules/list'
+import word from './modules/word'
 import auth from './modules/auth'
 
 const database = new VuexORM.Database()
@@ -25,6 +26,7 @@ export default new Vuex.Store({
     auth,
     user,
     list,
+    word,
   },
   plugins: [VuexORM.install(database)],
 })
