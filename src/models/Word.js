@@ -8,7 +8,7 @@ export default class Word extends Model {
       id: this.attr(null),
       origin: this.attr(''),
       translation: this.attr(''),
-      fluency: this.attr(0),
+      proficiency: this.attr(0),
       list_id: this.attr(null),
     }
   }

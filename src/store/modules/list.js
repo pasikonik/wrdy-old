@@ -1,5 +1,4 @@
 import api from '@/lib/api'
-import JsonApiResponseConverter from 'json-api-response-converter'
 import List from '@/models/List'
 
 const ListModule = {
@@ -11,8 +10,7 @@ const ListModule = {
       state.lists.push(newList)
     },
     SET_LISTS(_state, lists) {
-      const result = new JsonApiResponseConverter(lists).formattedResponse
-      List.insert({ data: result })
+      List.insert({ data: lists })
     },
   },
   actions: {

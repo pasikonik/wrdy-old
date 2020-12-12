@@ -8,11 +8,10 @@
             <v-list-item-subtitle>
               amount: {{ lists.length }}
             </v-list-item-subtitle>
-            <v-list-item-subtitle> words: 0 </v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
 
-        <v-divider></v-divider>
+        <v-divider />
 
         <v-list dense nav>
           <v-list-item

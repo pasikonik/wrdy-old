@@ -1,5 +1,5 @@
 <template>
-  <v-card width="300" class="mx-auto mt-5">
+  <v-card width="300" class="pa-2 mx-auto mt-16">
     <v-card-title class="text-center">
       <h1 class="display-1">Sign Up</h1>
     </v-card-title>
@@ -22,7 +22,7 @@
       </v-form>
     </v-card-text>
     <v-card-actions>
-      <v-btn color="success" @click="register">Sign Up</v-btn>
+      <v-btn block color="success" @click="register">Sign Up</v-btn>
     </v-card-actions>
   </v-card>
 </template>

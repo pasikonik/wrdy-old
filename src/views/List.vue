@@ -1,13 +1,13 @@
 <template>
   <ListsNavigation>
-    <div class="content">
-      <h1 class="d-flex align-center">
+    <div class="content" v-if="list">
+      <h1 class="d-flex align-center" v-if="list">
         <v-avatar rounded color="blue" size="36" class="mr-3">
           <v-icon dark> mdi-format-list-bulleted </v-icon>
         </v-avatar>
         {{ list.name }}
       </h1>
-      <div>words: {{ null }}</div>
+      <div>words: {{ list.words.length }}</div>
 
       <v-form>
         <v-container>
@@ -34,6 +34,10 @@
           </v-row>
         </v-container>
       </v-form>
+
+      <div v-for="word in list.words" :key="word.id">
+        {{ word.origin }} - {{ word.translation }} - {{ word.proficiency }}
+      </div>
     </div>
   </ListsNavigation>
 </template>
@@ -47,13 +51,13 @@ export default {
   props: ['id'],
   data() {
     return {
-      list: { name: '' },
+      list: false,
       newWordOrigin: '',
       newWordTranslation: '',
     }
   },
   created() {
-    this.fetchList()
+    this.getData()
   },
   computed: {
     wordParams() {
@@ -65,14 +69,14 @@ export default {
     },
   },
   methods: {
-    fetchList() {
+    async getData() {
+      await this.$store.dispatch('fetchWords', this.id)
       this.list = List.find(this.id)
     },
     addWord() {
       this.$store.dispatch('addWord', this.wordParams).then(() => {
         this.newWordOrigin = ''
         this.newWordTranslation = ''
-        console.log('lol')
       })
     },
   },
