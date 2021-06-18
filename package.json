@@ -1,5 +1,6 @@
 {
   "version": "0.0.1",
+  "license": "GPL-3.0",
   "scripts": {
     "serve": "vite preview",
     "build": "vite build",
@@ -7,6 +8,8 @@
   },
   "dependencies": {
     "@mdi/font": "5.9.55",
+    "@vuex-orm/core": "^1.0.0-draft.14",
+    "jwt-decode": "^3.1.2",
     "roboto-fontface": "*",
     "vue": "^3.0.5",
     "vue-router": "^4.0.9",
